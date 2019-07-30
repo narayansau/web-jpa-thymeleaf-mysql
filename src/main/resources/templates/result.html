@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot: javabeginnerstutorial.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(persons)}">
+    <h2>Person List</h2>
+    <table class="glyphicon glyphicon-calendar">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th> Role </th>
+        </tr>
+        <tr th:each="person : ${persons}">
+            <!--/*@thymesVar id="id" type="io"*/-->
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.email}"></td>
+            <td th:text="${person.role}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
