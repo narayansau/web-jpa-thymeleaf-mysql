@@ -5,14 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
+<form action="#" th:action="@{/}" method="get">
 <div th:if="${not #lists.isEmpty(persons)}">
     <h2>Person List</h2>
+
     <table class="glyphicon glyphicon-calendar">
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
             <th> Role </th>
+            <th>Created Date</th>
         </tr>
         <tr th:each="person : ${persons}">
             <!--/*@thymesVar id="id" type="io"*/-->
@@ -20,8 +24,33 @@
             <td th:text="${person.name}"></td>
             <td th:text="${person.email}"></td>
             <td th:text="${person.role}"></td>
+            <td th:text="${#calendars.format(person.created,'dd/MMM/yyyy')}">13 jan 2011</td>
+
+
+
+
+
+        </tr>
+
+        <tr th:each="prod,iterStat : ${persons}" th:class="${iterStat.odd}? 'odd'">
+            <td th:text="${prod.name}">Onions</td>
+            <td th:text="${prod.email}">2.41</td>
+            <td th:text="${prod.created}">yes</td>
+
+            <!--
+            date.format="dd ''de'' MMMM'','' yyyy"
+            <span th:with="df=#{date.format}"
+                  th:text="${#prod.created.format(today,df)}">13 February 2011</span> -->
         </tr>
     </table>
+
+    <p>Please select an option</p>
+    <ol>
+        <li><a href="product/list.html" th:href="@{/product/list}">Product List</a></li>
+        <li><a href="order/list.html" th:href="@{/order/list}">Order List</a></li>
+        <li><a href="subscribe.html" th:href="@{/subscribe}">Subscribe to our Newsletter</a></li>
+        <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
+    </ol>
 </div>
 </body>
 </html>
